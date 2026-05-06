@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
 import logo from "../../../assets/care.com.svg";
@@ -7,8 +7,18 @@ import { TiThMenu } from "react-icons/ti";
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 const [isActive, setIsActive] = useState(false);
+ const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
-    <nav className={styles.navbar}>
+    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
 
       <div className={styles.logo}>
         <img src={logo} alt="Logo" />
