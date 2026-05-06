@@ -1,0 +1,60 @@
+import React, { useState } from "react";
+import styles from "./Navbar.module.css";
+import { NavLink } from "react-router-dom";
+import logo from "../../../assets/care.com.svg";
+import { TiThMenu } from "react-icons/ti";
+
+const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+const [isActive, setIsActive] = useState(false);
+  return (
+    <nav className={styles.navbar}>
+
+      <div className={styles.logo}>
+        <img src={logo} alt="Logo" />
+      </div>
+
+      <div className={styles.menuIcon} onClick={() => setMenuOpen(!menuOpen)}>
+        <TiThMenu />
+      </div>
+
+      <div
+        className={`${styles.navLinks} ${menuOpen ? styles.activeMenu : ""}`}
+      >
+        <ul>
+          <li>
+            <NavLink to="/"  end onClick={() => setMenuOpen(false),() => setIsActive(true)} className={({ isActive }) => (isActive ? styles.active : "")}>
+              Home
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/reservation" onClick={() => setMenuOpen(false),() => setIsActive(false)} className={({ isActive }) => (isActive ? styles.active : "")}>
+              Reservation
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/all-doctors" onClick={() => setMenuOpen(false),() => setIsActive(false)} className={({ isActive }) => (isActive ? styles.active : "")}>
+              All Doctors
+            </NavLink>
+          </li>
+
+          <li className={styles.mobileLogin}>
+            <NavLink to="/login" onClick={() => setMenuOpen(false)}>
+              Login
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+
+      <div className={styles.userActions}>
+        <NavLink to="/login" className={styles.loginBtn}>
+          Login
+        </NavLink>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
