@@ -1,0 +1,40 @@
+.OurDoctors{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+.OurDoctors .headers{
+   margin-top: 20px;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.headers h2,
+.headers a{
+    color: var(--main-color);
+}
+.doctorCard {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cards {
+  display: flex;
+  gap: 20px;
+  width: 90%;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px;
+  scrollbar-width: none;
+}
+
+.cards::-webkit-scrollbar {
+  display: none;
+}
