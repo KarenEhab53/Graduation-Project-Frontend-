@@ -51,7 +51,7 @@ const [isActive, setIsActive] = useState(false);
           </li>
 
           <li className={styles.mobileLogin}>
-            <NavLink to="/login" onClick={() => setMenuOpen(false)}>
+            <NavLink to="/auth" onClick={() => setMenuOpen(false)}>
               Login
             </NavLink>
           </li>
@@ -59,7 +59,7 @@ const [isActive, setIsActive] = useState(false);
       </div>
 
       <div className={styles.userActions}>
-        <NavLink to="/login" className={styles.loginBtn}>
+        <NavLink to="/auth" className={styles.loginBtn}>
           Login
         </NavLink>
       </div>
