@@ -32,7 +32,7 @@
 
 .navLinks ul li a {
   text-decoration: none;
-  color: var(--text-color);
+  color: #555;
   font-size: 1.3rem;
   font-weight: bold;
   transition: 0.3s;
@@ -48,11 +48,11 @@
 
 .userActions a {
   text-decoration: none;
-  color: var(--text-color);
+  color: #555;
   font-size: 1.2rem;
-  border: 1px solid var(--text-color);
+  border: 1px solid #555;
   padding: 5px 30px;
-  border-radius: 15px;
+  border-radius: 9px;
     transition: 0.3s all ease;
     font-weight: bold;
 }

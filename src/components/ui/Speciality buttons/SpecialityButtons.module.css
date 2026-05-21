@@ -1,22 +1,45 @@
+.filters {
+  display: flex;
+  gap: 10px;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 10px ;
+  justify-content: flex-start;  
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
 
-.filters{
-    display: flex;
-    width: 80%;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
+.filters::-webkit-scrollbar {
+  display: none;
 }
-.filters button{
-    width: 100px;
-    padding:  7px 0px ;
-    border-radius: 8px;
-    background: none;
-    border: 1px solid var(--main-color);
-    color: var(--main-color);
-    size: 26px;
-    font-weight: bold;
+
+.button {
+  min-width: 120px;
+  padding: 5px 10px;
+  border-radius: 7px;
+  border: 1px solid var(--main-color);
+  background: transparent;
+  color: var(--main-color);
+
+  font-weight: 600;
+  cursor: pointer;
+font-size: 16px;
+  transition: all 0.3s ease;
+
 }
-.filters button:hover{
-    background-color: var(--main-color);
-    color: var(--white-color);
+
+
+.button:hover {
+  background-color: var(--main-color);
+  color: var(--white-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(57, 162, 171, 0.25);
+}
+
+.active {
+  background-color: var(--main-color);
+  color: var(--white-color);
+  box-shadow: 0 6px 14px rgba(57, 162, 171, 0.3);
+  transform: scale(1.05);
 }

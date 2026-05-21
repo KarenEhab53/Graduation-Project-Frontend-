@@ -1,20 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,XOPQ,XTRA,YOPQ,YTDE,YTFI,YTLC,YTUC@8..144,100..1000,96,468,79,-203,738,514,712&display=swap');:root{
-  --main-color:#39A2AB;
-  --white-color:#FFFFFF;
-  --secondary-color:#225555;
-  --red-color:#FF2A2A;
-  --text-color:#2A2A2A;
-  --gray-color:#A8A8A8;
-  --card-color:#39A2AB;
-  --green-color:#8CCC44ك
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,XOPQ,XTRA,YOPQ,YTDE,YTFI,YTLC,YTUC@8..144,100..1000,96,468,79,-203,738,514,712&display=swap");
+:root {
+  --main-color: #39a2ab;
+  --white-color: #ffffff;
+  --secondary-color: #225555;
+  --red-color: #ff2a2a;
+  --text-color: #2a2a2a;
+  --gray-color: #a8a8a8;
+  --card-color: #39a2ab;
+  --green-color: #8CCC44;
+
+
 }
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-    font-family: "Roboto Flex", sans-serif;
-
+  font-family: "Roboto Flex", sans-serif;
 }
-body{
-  background-color: var(--white-color);
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }

@@ -1,18 +1,25 @@
 import React from "react";
 import styles from "./Footer.module.css";
 import logo from "../../../assets/Care.com.svg";
+
 const Footer = () => {
   return (
-    <>
-      <div className={styles.footer}>
-        <div className={styles.logo}>
-          <img src={logo} alt="" />
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        {/* Logo + Brand */}
+        <div className={styles.brand}>
+          <img src={logo} alt="Care logo" />
+          <p>Your health, our priority.</p>
         </div>
-        <div className={styles.data}>
-          <p>&copy; {new Date().getFullYear()} Care. All Rights Reserved.</p>
+
+        
+
+        {/* Copyright */}
+        <div className={styles.copy}>
+          <p>© {new Date().getFullYear()} Care. All Rights Reserved.</p>
         </div>
       </div>
-    </>
+    </footer>
   );
 };
 

@@ -45,7 +45,7 @@ const [isActive, setIsActive] = useState(false);
           </li>
 
           <li>
-            <NavLink to="/all-doctors" onClick={() => setMenuOpen(false),() => setIsActive(false)} className={({ isActive }) => (isActive ? styles.active : "")}>
+            <NavLink to="/alldoctors" onClick={() => setMenuOpen(false),() => setIsActive(false)} className={({ isActive }) => (isActive ? styles.active : "")}>
               All Doctors
             </NavLink>
           </li>
