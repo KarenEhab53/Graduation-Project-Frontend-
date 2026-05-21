@@ -16,7 +16,7 @@
     margin-top: 50px;
 }
 .content span {
-  color: #ff2b2b;
+  color:var(--red-color);
 }
 .content {
   max-width: 700px;
