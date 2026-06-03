@@ -29,6 +29,7 @@ const Profile = () => {
             <label htmlFor="nid">National Id</label>
             <input type="text" id="nid" placeholder="Enter Your National Id" />
           </div>
+          <button type="submit">Update Profile</button>
         </form>
       </div>
     </>

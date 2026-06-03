@@ -13,6 +13,9 @@ import Profile from "./components/Dashboard/Profile/Profile.jsx";
 import Medical from "./components/Dashboard/Medical History/Medical.jsx";
 import NID from "./components/Dashboard/NID Search/NID.jsx";
 import Appointement from "./components/Dashboard/User Appointment/Appointement.jsx";
+import DoctorDashboard from "./pages/Doctor Dashboard/DoctorDashboard.jsx";
+import DocAppointement from "./components/Dashboard/Doctor Appointement/DocAppointement.jsx";
+import DocProfile from "./components/Dashboard/Doctor Profile/DocProfile.jsx";
 
 function App() {
   const location = useLocation();
@@ -36,6 +39,14 @@ function App() {
             <Route path="medical-history" element={<Medical />} />
             <Route path="NID" element={<NID />} />
             <Route path="my-appointement" element={<Appointement />} />
+          </Route>
+          <Route path="/doctor-dashboard" element={<DoctorDashboard />}>
+            <Route index element={<Profile />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="doctor-profile" element={<DocProfile />} />
+            <Route path="medical-history" element={<Medical />} />
+            <Route path="NID" element={<NID />} />
+            <Route path="my-appointement" element={<DocAppointement />} />
           </Route>
         </Routes>
       </main>
