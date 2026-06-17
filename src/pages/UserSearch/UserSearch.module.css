@@ -1,0 +1,100 @@
+/* UserSearch.module.css */
+
+.searchContainer {
+    text-align: center;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    width: 100%;
+    gap: 1.5rem;
+}
+
+.searchContainer h2 {
+    color: #2A2A2A;
+}
+
+.hiddenInput {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.inputDisplay {
+    border: none;
+    font-size: 2.5rem;
+    letter-spacing: 1rem;
+    cursor: text;
+    text-align: center;
+}
+
+.digit {
+    display: inline-block;
+    color: #A8A8A8;
+}
+
+.digit:hover {
+    cursor: pointer;
+    color: #39A2AB;
+}
+
+.filled {
+    color: #2A2A2A;
+}
+
+.button:hover {
+    background-color: #34768C;
+    transition: background-color 1s ease-in-out;
+}
+
+.button {
+    font-size: 1.3rem;
+    background-color: #39A2AB;
+    color: #FFFFFF;
+    border: none;
+    padding: 1rem 11rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 2rem;
+}
+
+.subtitle {
+    display: none;
+}
+
+/* Media Query */
+@media screen and (max-width: 474px) and (min-width: 300px) {
+    .inputDisplay {
+        border: none;
+        font-size: 1rem;
+        cursor: text;
+        text-align: center;
+    }
+
+    .digit {
+        display: inline-block;
+        color: #000000;
+    }
+
+    .button {
+        position: fixed;
+        bottom: 10px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        padding: 0.5rem;
+    }
+
+    .subtitle {
+        display: inline;
+        position: fixed;
+        top: 55px;
+        left: 10px;
+    }
+
+    .searchContainer h2 {
+        font-size: 1.2rem;
+    }
+}

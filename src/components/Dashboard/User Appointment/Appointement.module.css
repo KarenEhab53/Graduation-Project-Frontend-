@@ -1,0 +1,154 @@
+.appointmentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  min-height: 100vh;
+  background: var(--white-color);
+}
+
+/* ── Header row: title left, filters right ── */
+.appointmentHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.appointmentContainer h1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+}
+
+/* ── Filter buttons ── */
+.filterButtons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  background: transparent;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.coming {
+  border: 1.5px solid var(--coming-color);
+  color: var(--coming-color);
+}
+.coming:hover,
+.coming.active {
+  background: var(--coming-color);
+  color: #fff;
+}
+
+.completed {
+  border: 1.5px solid var(--primary-color);
+  color: var(--primary-color);
+}
+.completed:hover,
+.completed.active {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.cancelled {
+  border: 1.5px solid var(--red-color);
+  color: var(--red-color);
+}
+.cancelled:hover,
+.cancelled.active {
+  background: var(--red-color);
+  color: #fff;
+}
+
+.pending {
+  border: 1.5px solid var(--pending-color);
+  color: var(--pending-color);
+}
+.pending:hover,
+.pending.active {
+  background: var(--pending-color);
+  color: #fff;
+}
+
+.active {
+  color: #fff;
+}
+
+/* ── Cards list ── */
+.cardsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+.all {
+  color: var(--text-color);
+  border: 1.5px solid var(--text-color);
+}
+.all:hover,
+.all.active {
+  background: var(--text-color);
+  color: #fff;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .appointmentContainer {
+    padding: 20px;
+  }
+
+  .filterBtn {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 700px) {
+  .appointmentContainer {
+    padding: 18px;
+  }
+
+  .appointmentHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filterButtons {
+    justify-content: flex-start;
+    gap: 6px;
+  }
+
+  .filterBtn {
+    min-width: 96px;
+    flex: 1;
+  }
+}
+
+@media (max-width: 520px) {
+  .appointmentContainer {
+    padding: 14px;
+  }
+
+  .filterButtons {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .filterBtn {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+}

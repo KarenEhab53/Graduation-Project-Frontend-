@@ -16,6 +16,7 @@ import Appointement from "./components/Dashboard/User Appointment/Appointement.j
 import DoctorDashboard from "./pages/Doctor Dashboard/DoctorDashboard.jsx";
 import DocAppointement from "./components/Dashboard/Doctor Appointement/DocAppointement.jsx";
 import DocProfile from "./components/Dashboard/Doctor Profile/DocProfile.jsx";
+import UserSearch from "./pages/UserSearch/UserSearch.jsx";
 
 function App() {
   const location = useLocation();
@@ -26,7 +27,7 @@ function App() {
       <main className="content">
         <Routes>
           <Route path="/" element={<Home />} />
-
+<Route path="/search-patient" element ={<UserSearch/>}/>
           <Route path="/auth" element={<Auth />}>
             <Route index element={<Login />} />
             <Route path="login" element={<Login />} />
@@ -46,7 +47,8 @@ function App() {
             <Route path="doctor-profile" element={<DocProfile />} />
             <Route path="medical-history" element={<Medical />} />
             <Route path="NID" element={<NID />} />
-            <Route path="my-appointement" element={<DocAppointement />} />
+            <Route path="doctor-appointement" element={<DocAppointement />} />
+            <Route path="my-appointement" element={<Appointement />} />
           </Route>
         </Routes>
       </main>
