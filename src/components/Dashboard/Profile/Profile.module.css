@@ -94,7 +94,12 @@
 .form button:active {
   transform: scale(0.98);
 }
-
+.input input:disabled {
+  background: var(--white-color);
+  color: var(--gray-color);
+  cursor: not-allowed;
+  border-color: var(--gray-color);
+}
 @media screen and (max-width: 426px) {
   .profile {
     width: 100%;

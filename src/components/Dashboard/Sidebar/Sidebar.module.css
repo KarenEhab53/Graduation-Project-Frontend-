@@ -76,6 +76,34 @@
   border-left: 5px solid var(--main-color);
   transition: 0.1s ease-in;
 }
+.image {
+  position: relative;
+  cursor: pointer;
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--white-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  opacity: 0;
+  transition: 0.3s opacity ease;
+}
+
+.image:hover .imageOverlay {
+  opacity: 1;
+}
+
+.image:focus-visible {
+  outline: 2px solid var(--main-color);
+  outline-offset: 2px;
+}
 @media screen and (max-width: 768px) {
   .sidebar {
     margin-left: 0;

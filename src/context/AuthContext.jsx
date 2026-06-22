@@ -7,7 +7,6 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // On first load, restore session from localStorage
   useEffect(() => {
     const stored = localStorage.getItem("user");
     if (stored) {
@@ -28,8 +27,18 @@ export function AuthProvider({ children }) {
     setUser(null);
   };
 
+  // Patch the current user with partial updates (e.g. after profile/image edits)
+  const updateUser = (updates) => {
+    setUser((prev) => {
+      if (!prev) return prev;
+      const merged = { ...prev, ...updates };
+      localStorage.setItem("user", JSON.stringify(merged));
+      return merged;
+    });
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, logout, updateUser, loading }}>
       {children}
     </AuthContext.Provider>
   );
