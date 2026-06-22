@@ -1,0 +1,99 @@
+/* src/pages/NotFound/NotFound.module.css */
+
+.notfound {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: var(--white-color);
+  color: var(--text-color);
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+.pulse {
+  width: min(420px, 90vw);
+  margin-bottom: 1.5rem;
+}
+
+.pulseSvg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.pulseLine {
+  stroke: var(--main-color);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: draw 2.2s ease-out forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--secondary-color);
+}
+
+.code {
+  margin: 0;
+  font-size: clamp(3.5rem, 10vw, 6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--secondary-color);
+}
+
+.message {
+  margin: 0.75rem 0 2rem;
+  max-width: 32ch;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--gray-color);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  background: var(--main-color);
+  color: var(--white-color);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.cta:hover {
+  background: var(--secondary-color);
+  transform: translateY(-1px);
+}
+
+.cta:focus-visible {
+  outline: 3px solid var(--green-color);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulseLine {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
