@@ -1,0 +1,114 @@
+.profile {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.profile h1 {
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: start;
+}
+
+.form .input {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form .input label {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--main-color);
+}
+
+.form .input input,
+.form .input select {
+  width: 500px;
+  padding: 10px 14px;
+  border: 1.5px solid transparent;
+  border-radius: 20px;
+  box-shadow: 0 0 0 1px #00000020, 0 1px 4px #00000015;
+  background-color: #fff;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  cursor: pointer;
+}
+
+.form .input input::placeholder {
+  color: #bbb;
+}
+
+.form .input input:hover,
+.form .input select:hover {
+  box-shadow: 0 0 0 1px #00000035, 0 1px 5px #00000020;
+}
+
+.form .input input:focus,
+.form .input select:focus {
+  outline: none;
+  border-color: var(--main-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--main-color) 15%, transparent);
+}
+
+
+.form .input select {
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 38px;
+}
+
+.form button {
+  text-decoration: none;
+  color: var(--main-color);
+  font-size: 1.2rem;
+  border: 1px solid var(--main-color);
+  padding: 8px 30px;
+  border-radius: 9px;
+  transition: 0.2s all ease;
+  font-weight: bold;
+  width: 100%;
+  background: none;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background-color: var(--main-color);
+  color: var(--white-color);
+}
+
+.form button:active {
+  transform: scale(0.98);
+}
+.input input:disabled {
+  background: var(--white-color);
+  color: var(--gray-color);
+  cursor: not-allowed;
+  border-color: var(--gray-color);
+}
+@media screen and (max-width: 426px) {
+  .profile {
+    width: 100%;
+    padding: 0;
+  }
+
+  .form .input input,
+  .form .input select,
+  .form button {
+    width: 100%;
+  }
+}

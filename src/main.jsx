@@ -4,11 +4,20 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { AuthProvider } from './context/AuthContext.jsx'
+import { ProfileProvider } from './context/ProfileContext.jsx'
+import { DoctorProvider } from './context/DoctorContext.jsx'
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <AuthProvider>
+        <ProfileProvider>
+          <DoctorProvider>
+            <App />
+          </DoctorProvider>
+        </ProfileProvider>
+      </AuthProvider>
     </BrowserRouter>
   </StrictMode>,
 );

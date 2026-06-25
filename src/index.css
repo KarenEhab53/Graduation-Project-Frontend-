@@ -3,13 +3,14 @@
   --main-color: #39a2ab;
   --white-color: #ffffff;
   --secondary-color: #225555;
-  --red-color: #CB2027;
+  --red-color: #cb2027;
   --text-color: #2a2a2a;
   --gray-color: #a8a8a8;
   --card-color: #39a2ab;
-  --green-color: #8CCC44;
-
-
+  --green-color: #8ccc44;
+  --coming-color: var(--main-color);
+  --primary-color: var(--main-color);
+  --pending-color: var(--green-color);
 }
 * {
   margin: 0;
@@ -22,7 +23,8 @@ body {
   height: 100%;
   margin: 0;
 }
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
 }

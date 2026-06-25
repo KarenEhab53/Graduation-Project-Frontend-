@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './Hero.module.css'
 import hero from '../../../assets/hero.png'
+import { Link } from 'react-router-dom';
 const Hero = () => {
   return (
     <>
@@ -13,7 +14,7 @@ const Hero = () => {
               hospital with an ambulance
             </h2>
             <div className={styles.buttons}>
-              <button>Search by ID</button>
+              <Link to="/search-patient"><button>Search by ID</button></Link>
               <button>Search for Doctors</button>
             </div>
           </div>
