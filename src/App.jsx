@@ -19,6 +19,7 @@ import DocProfile from "./components/Dashboard/Doctor Profile/DocProfile.jsx";
 import UserSearch from "./pages/UserSearch/UserSearch.jsx";
 import ProtectedRoute from "./components/Protect Route/ProtectedRoute.jsx";
 import NotFound from "./pages/Not Found/NotFound.jsx";
+import DoctorProfile from "./pages/Doctor Profile/DoctorProfile.jsx";
 
 const KNOWN_PATHS = [
   "/",
@@ -44,6 +45,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/alldoctors" element={<AllDoctors />} />
+          <Route path="/doctor-profile" element={<DoctorProfile />} />
 
           <Route path="/auth" element={<Auth />}>
             <Route index element={<Login />} />
