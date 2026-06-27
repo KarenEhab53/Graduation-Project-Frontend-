@@ -7,6 +7,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import { AuthProvider } from './context/AuthContext.jsx'
 import { ProfileProvider } from './context/ProfileContext.jsx'
 import { DoctorProvider } from './context/DoctorContext.jsx'
+import { NIDProvider } from './context/NIDContext.jsx'
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -14,7 +15,9 @@ createRoot(document.getElementById("root")).render(
       <AuthProvider>
         <ProfileProvider>
           <DoctorProvider>
-            <App />
+            <NIDProvider>
+              <App />
+            </NIDProvider>
           </DoctorProvider>
         </ProfileProvider>
       </AuthProvider>
