@@ -9,6 +9,10 @@ const NID = () => {
 
   const [isEdit, setIsEdit] = useState(false);
 
+  const [existingImageUrl, setExistingImageUrl] = useState(null);
+
+  const [previewUrl, setPreviewUrl] = useState(null);
+
   const [formData, setFormData] = useState({
     emergencyNumber: "",
     bloodType: "",
@@ -21,13 +25,28 @@ const NID = () => {
     fetchMyNID();
   }, []);
 
+  useEffect(() => {
+    if (!formData.profileImage) {
+      setPreviewUrl(null);
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(formData.profileImage);
+
+    setPreviewUrl(objectUrl);
+
+    return () => {
+      URL.revokeObjectURL(objectUrl);
+    };
+  }, [formData.profileImage]);
+
   const fetchMyNID = async () => {
     try {
       const response = await getMyNID();
 
-      if (response?.data) {
-        const nid = response.data;
+      const nid = response.data;
 
+      if (nid) {
         setFormData({
           emergencyNumber: nid.emergencyNumber || "",
           bloodType: nid.bloodType || "",
@@ -36,10 +55,13 @@ const NID = () => {
           profileImage: null,
         });
 
+        setExistingImageUrl(nid.profileImage || null);
+
         setIsEdit(true);
       }
     } catch (err) {
       setIsEdit(false);
+      setExistingImageUrl(null);
     }
   };
 
@@ -48,7 +70,7 @@ const NID = () => {
 
     setFormData((prev) => ({
       ...prev,
-      [name]: files?.length > 0 ? files[0] : value,
+      [name]: files && files.length ? files[0] : value,
     }));
   };
 
@@ -77,8 +99,10 @@ const NID = () => {
         data.append("profileImage", formData.profileImage);
       }
 
+      let response;
+
       if (isEdit) {
-        await updateNID(data);
+        response = await updateNID(data);
 
         Swal.fire({
           icon: "success",
@@ -87,7 +111,7 @@ const NID = () => {
           showConfirmButton: false,
         });
       } else {
-        await addNID(data);
+        response = await addNID(data);
 
         Swal.fire({
           icon: "success",
@@ -98,10 +122,27 @@ const NID = () => {
 
         setIsEdit(true);
       }
+
+      console.log(response);
+
+      if (response?.data?.profileImage) {
+        setExistingImageUrl(response.data.profileImage);
+      }
+
+      setFormData((prev) => ({
+        ...prev,
+        profileImage: null,
+      }));
+
+      const fileInput = document.getElementById("profileImage");
+
+      if (fileInput) {
+        fileInput.value = "";
+      }
     } catch (err) {
       Swal.fire({
         icon: "error",
-        title: error || "Something went wrong",
+        title: err?.response?.data?.message || "Something went wrong",
       });
     }
   };
@@ -135,9 +176,15 @@ const NID = () => {
         profileImage: null,
       });
 
+      setExistingImageUrl(null);
+      setPreviewUrl(null);
       setIsEdit(false);
 
-      document.getElementById("profileImage").value = "";
+      const fileInput = document.getElementById("profileImage");
+
+      if (fileInput) {
+        fileInput.value = "";
+      }
     } catch (err) {
       Swal.fire({
         icon: "error",
@@ -145,6 +192,8 @@ const NID = () => {
       });
     }
   };
+
+  const imageSrc = previewUrl || existingImageUrl;
 
   return (
     <div className={styles.nid}>
@@ -172,21 +221,13 @@ const NID = () => {
             onChange={handleChange}
           >
             <option value="">Select</option>
-
             <option value="A+">A+</option>
-
             <option value="A-">A-</option>
-
             <option value="B+">B+</option>
-
             <option value="B-">B-</option>
-
             <option value="AB+">AB+</option>
-
             <option value="AB-">AB-</option>
-
             <option value="O+">O+</option>
-
             <option value="O-">O-</option>
           </select>
         </div>
@@ -218,13 +259,9 @@ const NID = () => {
           <label>Emergency Photo</label>
 
           <label htmlFor="profileImage" className={styles.uploadBox}>
-            {formData.profileImage ? (
+            {imageSrc ? (
               <>
-                <img
-                  src={URL.createObjectURL(formData.profileImage)}
-                  alt=""
-                  className={styles.preview}
-                />
+                <img src={imageSrc} alt="Preview" className={styles.preview} />
 
                 <span className={styles.changePhoto}>Change Photo</span>
               </>
@@ -250,16 +287,7 @@ const NID = () => {
         {error && <div className={styles.error}>{error}</div>}
 
         <button type="submit" disabled={loading}>
-          {loading ? (
-            <>
-              <span className={styles.spinner}></span>
-              Saving...
-            </>
-          ) : isEdit ? (
-            "Update NID"
-          ) : (
-            "Add NID"
-          )}
+          {loading ? "Saving..." : isEdit ? "Update NID" : "Add NID"}
         </button>
 
         {isEdit && (
