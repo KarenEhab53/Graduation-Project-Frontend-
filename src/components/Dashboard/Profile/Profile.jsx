@@ -1,4 +1,3 @@
-// src/components/Dashboard/Profile/Profile.jsx
 import React, { useEffect, useState } from "react";
 import styles from "./Profile.module.css";
 import Swal from "sweetalert2";

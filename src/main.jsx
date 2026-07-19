@@ -8,6 +8,7 @@ import { AuthProvider } from './context/AuthContext.jsx'
 import { ProfileProvider } from './context/ProfileContext.jsx'
 import { DoctorProvider } from './context/DoctorContext.jsx'
 import { NIDProvider } from './context/NIDContext.jsx'
+import { MedicalProvider } from './context/MedicalContext.jsx'
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -16,7 +17,9 @@ createRoot(document.getElementById("root")).render(
         <ProfileProvider>
           <DoctorProvider>
             <NIDProvider>
-              <App />
+              <MedicalProvider>
+                <App />
+              </MedicalProvider>
             </NIDProvider>
           </DoctorProvider>
         </ProfileProvider>
