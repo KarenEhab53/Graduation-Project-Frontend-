@@ -26,9 +26,10 @@ const AddHistory = ({ folderId, record, onClose, onSaved }) => {
   );
   const [description, setDescription] = useState(record?.description || "");
 
-  const [existingDocuments, setExistingDocuments] = useState(
-    record?.documents || [],
-  );
+  // Documents already saved on the record — × stages removal, nothing is
+  // deleted server-side until Save is pressed.
+  const [keptDocuments, setKeptDocuments] = useState(record?.documents || []);
+  const [removedDocuments, setRemovedDocuments] = useState([]);
   const [newFiles, setNewFiles] = useState([]);
 
   const [saving, setSaving] = useState(false);
@@ -44,8 +45,9 @@ const AddHistory = ({ folderId, record, onClose, onSaved }) => {
     setNewFiles((prev) => prev.filter((_, i) => i !== idx));
   };
 
-  const removeExistingDocument = (url) => {
-    setExistingDocuments((prev) => prev.filter((d) => d !== url));
+  const stageDocumentRemoval = (url) => {
+    setKeptDocuments((prev) => prev.filter((d) => d !== url));
+    setRemovedDocuments((prev) => [...prev, url]);
   };
 
   const handleSubmit = async (e) => {
@@ -59,17 +61,14 @@ const AddHistory = ({ folderId, record, onClose, onSaved }) => {
       formData.append("doctorName", doctorName);
       formData.append("recordDate", recordDate);
       formData.append("description", description);
-      if (!isEdit) formData.append("folderId", folderId);
 
-      existingDocuments.forEach((url) =>
-        formData.append("existingDocuments", url),
+      // URLs of existing documents to drop.
+      removedDocuments.forEach((url) =>
+        formData.append("removeDocuments", url),
       );
 
-      // Newly added files to upload — this is the part that was missing,
-      // which is why images never actually got sent to the server.
-      // If your multer route uses a different field name than "files"
-      // (e.g. upload.array("attachments")), change it here to match.
-      newFiles.forEach((file) => formData.append("files", file));
+      // New files to upload — field name must be exactly "documents".
+      newFiles.forEach((file) => formData.append("documents", file));
 
       if (isEdit) {
         await api.put(`/update-file/${record._id}`, formData);
@@ -148,15 +147,15 @@ const AddHistory = ({ folderId, record, onClose, onSaved }) => {
         <div className={styles.field}>
           <span>Documents</span>
 
-          {existingDocuments.length > 0 && (
+          {keptDocuments.length > 0 && (
             <ul className={styles.docList}>
-              {existingDocuments.map((url) => (
+              {keptDocuments.map((url) => (
                 <li key={url} className={styles.docItem}>
                   <span className={styles.docName}>{fileNameFromUrl(url)}</span>
                   <button
                     type="button"
                     className={styles.docRemoveBtn}
-                    onClick={() => removeExistingDocument(url)}
+                    onClick={() => stageDocumentRemoval(url)}
                     aria-label="Remove document"
                   >
                     ×

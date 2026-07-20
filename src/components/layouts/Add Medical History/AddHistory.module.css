@@ -91,6 +91,12 @@
   text-overflow: ellipsis;
 }
 
+.hint {
+  font-size: 12px;
+  color: #9ca3af;
+  margin: 4px 0 0;
+}
+
 .docBadge {
   font-size: 11px;
   color: #17a2a8;
