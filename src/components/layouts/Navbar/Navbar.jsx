@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import styles from "./Navbar.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../../assets/care.com.svg";
 import { TiThMenu } from "react-icons/ti";
-import { FiUser, FiGrid, FiLogOut, FiChevronDown } from "react-icons/fi";
+import { FiUser, FiLogOut, FiChevronDown } from "react-icons/fi";
 import { useAuth } from "../../../context/AuthContext.jsx";
 import Swal from "sweetalert2";
 
@@ -112,6 +112,18 @@ const Navbar = () => {
               All Doctors
             </NavLink>
           </li>
+
+          {user && (
+            <li>
+              <NavLink
+                to="/chat"
+                onClick={() => setMenuOpen(false)}
+                className={({ isActive }) => (isActive ? styles.active : "")}
+              >
+                Chat
+              </NavLink>
+            </li>
+          )}
 
           {!user && (
             <li className={styles.mobileOnly}>

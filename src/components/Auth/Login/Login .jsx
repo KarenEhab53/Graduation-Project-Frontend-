@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import styles from "./Login.module.css";
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import api from "../../../api/api";
 import Swal from "sweetalert2";
 import { useAuth } from "../../../context/AuthContext.jsx";
 
 const Login = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const { login } = useAuth();
 
   const [form, setForm] = useState({

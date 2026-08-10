@@ -20,6 +20,7 @@ import UserSearch from "./pages/UserSearch/UserSearch.jsx";
 import ProtectedRoute from "./components/Protect Route/ProtectedRoute.jsx";
 import NotFound from "./pages/Not Found/NotFound.jsx";
 import DoctorProfile from "./pages/Doctor Profile/DoctorProfile.jsx";
+import Chat from "./pages/Chat/Chat.jsx";
 
 const KNOWN_PATHS = [
   "/",
@@ -27,6 +28,7 @@ const KNOWN_PATHS = [
   "/search-patient",
   "/user-dashboard",
   "/doctor-dashboard",
+  "/chat",
 ];
 
 function App() {
@@ -57,6 +59,8 @@ function App() {
             element={<ProtectedRoute allowedRoles={["user", "doctor"]} />}
           >
             <Route path="/search-patient" element={<UserSearch />} />
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/chat/:doctorId" element={<Chat />} />
           </Route>
 
           <Route element={<ProtectedRoute allowedRoles={["user"]} />}>
@@ -80,7 +84,6 @@ function App() {
               <Route path="my-appointement" element={<Appointement />} />
             </Route>
           </Route>
-
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

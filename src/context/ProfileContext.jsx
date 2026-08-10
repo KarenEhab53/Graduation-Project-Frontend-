@@ -1,4 +1,5 @@
 // src/context/ProfileContext.jsx
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useCallback } from "react";
 import api from "../api/api";
 import { useAuth } from "./AuthContext.jsx";

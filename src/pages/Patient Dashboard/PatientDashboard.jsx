@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import styles from "./PatientDashboard.module.css";
 import Sidebar from "../../components/Dashboard/Sidebar/Sidebar";
 import { MdCancel } from "react-icons/md";
@@ -31,7 +31,7 @@ const sidebarLinks = [
   {
     title: "Messages",
     icon: "fa-regular fa-message",
-    path: "/user-dashboard/messages",
+    path: "../Chat",
   },
   {
     title: "Logout",

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import  { useContext, useEffect, useMemo, useState } from "react";
 import Swal from "sweetalert2";
 import styles from "./NID.module.css";
 import { NIDContext } from "../../../context/NIDContext";
@@ -11,8 +11,6 @@ const NID = () => {
 
   const [existingImageUrl, setExistingImageUrl] = useState(null);
 
-  const [previewUrl, setPreviewUrl] = useState(null);
-
   const [formData, setFormData] = useState({
     emergencyNumber: "",
     bloodType: "",
@@ -22,48 +20,49 @@ const NID = () => {
   });
 
   useEffect(() => {
-    fetchMyNID();
-  }, []);
+    const fetchMyNID = async () => {
+      try {
+        const response = await getMyNID();
 
-  useEffect(() => {
+        const nid = response.data;
+
+        if (nid) {
+          setFormData({
+            emergencyNumber: nid.emergencyNumber || "",
+            bloodType: nid.bloodType || "",
+            address: nid.address || "",
+            note: nid.note || "",
+            profileImage: null,
+          });
+
+          setExistingImageUrl(nid.profileImage || null);
+
+          setIsEdit(true);
+        }
+      } catch {
+        setIsEdit(false);
+        setExistingImageUrl(null);
+      }
+    };
+
+    fetchMyNID();
+  }, [ getMyNID]);
+
+  const previewUrl = useMemo(() => {
     if (!formData.profileImage) {
-      setPreviewUrl(null);
-      return;
+      return null;
     }
 
-    const objectUrl = URL.createObjectURL(formData.profileImage);
-
-    setPreviewUrl(objectUrl);
-
-    return () => {
-      URL.revokeObjectURL(objectUrl);
-    };
+    return URL.createObjectURL(formData.profileImage);
   }, [formData.profileImage]);
 
-  const fetchMyNID = async () => {
-    try {
-      const response = await getMyNID();
-
-      const nid = response.data;
-
-      if (nid) {
-        setFormData({
-          emergencyNumber: nid.emergencyNumber || "",
-          bloodType: nid.bloodType || "",
-          address: nid.address || "",
-          note: nid.note || "",
-          profileImage: null,
-        });
-
-        setExistingImageUrl(nid.profileImage || null);
-
-        setIsEdit(true);
+  useEffect(() => {
+    return () => {
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl);
       }
-    } catch (err) {
-      setIsEdit(false);
-      setExistingImageUrl(null);
-    }
-  };
+    };
+  }, [previewUrl]);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -177,7 +176,6 @@ const NID = () => {
       });
 
       setExistingImageUrl(null);
-      setPreviewUrl(null);
       setIsEdit(false);
 
       const fileInput = document.getElementById("profileImage");
@@ -185,7 +183,7 @@ const NID = () => {
       if (fileInput) {
         fileInput.value = "";
       }
-    } catch (err) {
+    } catch {
       Swal.fire({
         icon: "error",
         title: "Delete failed",

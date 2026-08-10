@@ -1,5 +1,5 @@
 // src/components/Dashboard/Profile/Profile.jsx
-import React, { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styles from "./Profile.module.css";
 import Swal from "sweetalert2";
 import { useProfile } from "../../../context/ProfileContext.jsx";
@@ -15,13 +15,20 @@ const Profile = () => {
   } = useProfile();
 
   const [submitting, setSubmitting] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    NID: "",
-    phone: "",
-    location: "",
-  });
+  const [form, setForm] = useState({});
+
+  const profileForm = useMemo(
+    () => ({
+      name: profile?.name || "",
+      email: profile?.email || "",
+      NID: profile?.NID || "",
+      phone: profile?.phone || "",
+      location: profile?.location || "",
+    }),
+    [profile]
+  );
+
+  const mergedForm = { ...profileForm, ...form };
 
   useEffect(() => {
     fetchProfile().catch(() => {
@@ -33,18 +40,6 @@ const Profile = () => {
     });
     fetchLocations();
   }, [fetchProfile, fetchLocations]);
-
-  useEffect(() => {
-    if (profile) {
-      setForm({
-        name: profile.name || "",
-        email: profile.email || "",
-        NID: profile.NID || "",
-        phone: profile.phone || "",
-        location: profile.location || "",
-      });
-    }
-  }, [profile]);
 
   const handleChange = (e) => {
     setForm({
@@ -102,7 +97,7 @@ const Profile = () => {
             id="name"
             name="name"
             placeholder="Enter Your Name"
-            value={form.name}
+            value={mergedForm.name}
             onChange={handleChange}
           />
         </div>
@@ -113,7 +108,7 @@ const Profile = () => {
             type="email"
             id="email"
             name="email"
-            value={form.email}
+            value={mergedForm.email}
             disabled
             readOnly
           />
@@ -124,7 +119,7 @@ const Profile = () => {
           <select
             id="location"
             name="location"
-            value={form.location}
+            value={mergedForm.location}
             onChange={handleChange}
           >
             {locations.length === 0 ? (
@@ -146,7 +141,7 @@ const Profile = () => {
             id="phone"
             name="phone"
             placeholder="Enter Your Phone"
-            value={form.phone}
+            value={mergedForm.phone}
             onChange={handleChange}
           />
         </div>
@@ -157,7 +152,7 @@ const Profile = () => {
             type="text"
             id="NID"
             name="NID"
-            value={form.NID}
+            value={mergedForm.NID}
             disabled
             readOnly
           />
