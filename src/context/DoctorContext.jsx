@@ -38,8 +38,6 @@ export function DoctorProvider({ children }) {
     setError(null);
   }, []);
 
-  // Pull the list of specialties/cities from whatever doctors have already loaded.
-  // Call this once on app start so the dropdowns are populated before any search.
   const fetchFilterOptions = useCallback(async () => {
     try {
       const res = await api.get("/get-all-doctor-data");

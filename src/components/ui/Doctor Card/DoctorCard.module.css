@@ -36,4 +36,5 @@
   font-weight: bold;
   margin: 5px 0;
   color: var(--text-color);
+  text-transform: capitalize;
 }

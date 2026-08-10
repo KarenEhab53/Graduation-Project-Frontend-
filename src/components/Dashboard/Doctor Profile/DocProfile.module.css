@@ -1,57 +1,79 @@
 .DocProfile {
-  max-width: 420px;
-  padding: 24px 0 32px;
-  font-family: sans-serif;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: clamp(20px, 5vw, 32px) clamp(16px, 4vw, 28px) 32px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.DocProfile * {
+  box-sizing: border-box;
 }
 
 .title {
-  font-size: 18px;
-  font-weight: 500;
+  font-size: clamp(17px, 4vw, 20px);
+  font-weight: 600;
   color: #1a1a1a;
-  margin: 0 0 20px;
+  margin: 0 0 22px;
+  letter-spacing: -0.01em;
 }
 
 .label {
   display: block;
   font-size: 12.5px;
-  color: #3abfc4;
-  font-weight: 500;
-  margin-bottom: 5px;
+  color: #2a9ca6;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
 }
 
 .field {
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .field input[type='text'],
 .field input[type='number'],
 .field textarea {
   width: 100%;
-  box-sizing: border-box;
-  border: 1px solid #c8e6e9;
-  border-radius: 6px;
-  padding: 7px 10px;
-  font-size: 13px;
+  border: 1.5px solid #d7edef;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 14px;
   color: #1a1a1a;
   background: #fff;
   outline: none;
-  transition: border 0.15s;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
 
 .field input[type='text']:focus,
 .field input[type='number']:focus,
 .field textarea:focus {
   border-color: #3abfc4;
+  box-shadow: 0 0 0 3px rgba(58, 191, 196, 0.15);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #a9a9a9;
 }
 
 .field textarea {
   resize: vertical;
-  min-height: 80px;
+  min-height: 84px;
+  line-height: 1.5;
 }
 
 .field input[type='number'] {
   -moz-appearance: textfield;
   appearance: textfield;
+}
+
+.field input[type='number']::-webkit-outer-spin-button,
+.field input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .short {
@@ -62,19 +84,20 @@
   display: flex;
   gap: 8px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .row input {
   flex: 1;
+  min-width: 0;
 }
 
-.addBtn {
-  width: 28px;
-  height: 32px;
-  border: 1px solid #c8e6e9;
-  border-radius: 6px;
-  background: #fff;
-  color: #3abfc4;
+.addBtn,
+.removeBtn {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  border-radius: 8px;
   font-size: 18px;
   display: flex;
   align-items: center;
@@ -82,14 +105,35 @@
   cursor: pointer;
   flex-shrink: 0;
   line-height: 1;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.addBtn {
+  border: 1.5px solid #d7edef;
+  background: #fff;
+  color: #3abfc4;
 }
 
 .addBtn:hover {
-  background: #e8f8fa;
+  background: #eafafb;
+  border-color: #3abfc4;
+}
+
+.removeBtn {
+  border: 1.5px solid #f5d9d9;
+  background: #fff;
+  color: #c94b4b;
+  font-size: 16px;
+}
+
+.removeBtn:hover {
+  background: #fbeaea;
+  border-color: #c94b4b;
 }
 
 .radioGroup {
   display: flex;
+  flex-wrap: wrap;
   gap: 18px;
   align-items: center;
   margin-top: 4px;
@@ -101,14 +145,14 @@
   font-weight: 400;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   cursor: pointer;
 }
 
 .radioLabel input[type='radio'] {
   accent-color: #3abfc4;
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 15px;
   margin: 0;
 }
 
@@ -116,11 +160,13 @@
   position: relative;
   display: inline-flex;
   align-items: center;
+  max-width: 100%;
 }
 
 .spinWrap input {
-  width: 80px !important;
-  padding-right: 24px;
+  width: 100px !important;
+  max-width: 100%;
+  padding-right: 26px !important;
 }
 
 .spinners {
@@ -132,8 +178,8 @@
 }
 
 .spinners button {
-  width: 14px;
-  height: 12px;
+  width: 16px;
+  height: 13px;
   border: none;
   background: none;
   padding: 0;
@@ -144,16 +190,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 2px;
 }
 
 .spinners button:hover {
   color: #2a9ca6;
+  background: #eafafb;
 }
 
 .spinRow {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .unit {
@@ -164,21 +213,129 @@
 .footer {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 24px;
 }
 
 .saveBtn {
+  width: 100%;
+  max-width: 280px;
   background: #3abfc4;
   color: #fff;
   border: none;
   border-radius: 8px;
-  padding: 10px 52px;
-  font-size: 14px;
-  font-weight: 500;
+  padding: 12px 24px;
+  font-size: 14.5px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background 0.15s, transform 0.05s;
 }
 
 .saveBtn:hover {
   background: #2a9ca6;
+}
+
+.saveBtn:active {
+  transform: scale(0.98);
+}
+
+.saveBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error,
+.success {
+  font-size: 13px;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: -4px 0 14px;
+}
+
+.error {
+  color: #a33333;
+  background: #fdecec;
+  border: 1px solid #f5d9d9;
+}
+
+.success {
+  color: #1f7a82;
+  background: #e6f7f8;
+  border: 1px solid #c8e6e9;
+}
+
+.emptyRow {
+  color: #999;
+  font-size: 12.5px;
+  margin-bottom: 8px;
+}
+
+.nestedBlock {
+  border: 1px solid #e8f4f5;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #fbfeff;
+}
+
+.nestedRow {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.nestedRow input {
+  flex: 1;
+  min-width: 140px;
+}
+
+/* ---- Responsive breakpoints ---- */
+
+@media (max-width: 480px) {
+  .DocProfile {
+    padding: 18px 16px 28px;
+  }
+
+  .row,
+  .nestedRow {
+    flex-wrap: nowrap;
+  }
+
+  .nestedRow {
+    flex-direction: column;
+  }
+
+  .nestedRow input {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .spinWrap input {
+    width: 100% !important;
+  }
+
+  .spinRow {
+    width: 100%;
+  }
+
+  .saveBtn {
+    max-width: none;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .DocProfile {
+    max-width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field input,
+  .field textarea,
+  .addBtn,
+  .removeBtn,
+  .saveBtn {
+    transition: none;
+  }
 }
