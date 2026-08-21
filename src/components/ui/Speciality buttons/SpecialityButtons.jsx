@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
-import styles from "./SpecialityButtons.module.css"
-import doctorData from '../../../Data';
-const SpecialityButtons = ({ selectedSpeciality, setSelectedSpeciality }) => {
+import React from "react";
+import styles from "./SpecialityButtons.module.css";
+
+const SpecialityButtons = ({
+  doctors,
+  selectedSpeciality,
+  setSelectedSpeciality,
+}) => {
   const specialities = [
     "All",
-    ...new Set(doctorData.map((doc) => doc.speciality)),
+    ...new Set(doctors.map((doc) => doc.specialty).filter(Boolean)),
   ];
 
   return (
@@ -24,4 +28,4 @@ const SpecialityButtons = ({ selectedSpeciality, setSelectedSpeciality }) => {
   );
 };
 
-export default SpecialityButtons
+export default SpecialityButtons;

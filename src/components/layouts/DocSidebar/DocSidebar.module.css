@@ -1,128 +1,184 @@
 .DocSidebar {
-  background: #d6eef0;
-  border-radius: 20px;
-  padding: 30px;
-  width: 300px;
+  --accent: #3abfc4;
+  --accent-dark: #2a9ca6;
+  --accent-bg: #e8f8fa;
+  --border: #c8e6e9;
+  --text: #1a1a1a;
+  --muted: #6b6b6b;
+height: 90vh;
+  width: 100%;
+  max-width: 320px;
+  box-sizing: border-box;
+  background: var(--accent-bg);
+  border: 2px solid var(--accent);
+  border-radius: 18px;
+  padding: clamp(20px, 4vw, 28px);
   display: flex;
-  min-height: 90vh;
-  margin: 20px;
   flex-direction: column;
   align-items: center;
-  border: 2px solid var(--main-color);
-  gap: 0;
-  font-family: sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Avatar */
 .DocSidebar img {
-  width: 90px;
-  height: 90px;
+  width: clamp(96px, 22vw, 130px);
+  height: clamp(96px, 22vw, 130px);
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #fff;
-  margin-bottom: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
-/* Rating badge */
+.name {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 14px 0 2px;
+  text-align: center;
+}
+
+.specialty {
+  font-size: 13.5px;
+  color: var(--muted);
+  margin: 0 0 10px;
+  text-align: center;
+}
+
 .rate {
-  background: #3abfc4;
-  color: #fff;
-  border-radius: 20px;
-  padding: 3px 12px;
-  font-size: 13px;
-  font-weight: 500;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
-  margin-bottom: 16px;
-}
-
-/* Action buttons row */
-.data {
-  display: flex;
-  gap: 10px;
+  gap: 5px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 999px;
   margin-bottom: 18px;
 }
 
+.data {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  justify-content: center;
+}
+
 .data button {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 10px;
-  background: #d6eef0;
-  border: 1.5px solid #9ecfd4;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  color: var(--accent);
+  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #2a9ca6;
-  font-size: 18px;
-  transition: background 0.15s;
+  transition: background 0.15s, border-color 0.15s, transform 0.05s;
 }
 
 .data button:hover {
-  background: #bfe2e6;
+  background: var(--accent-bg);
+  border-color: var(--accent);
 }
 
-/* Divider */
+.data button:active {
+  transform: scale(0.94);
+}
+
 .divider {
   width: 100%;
-  height: 0.5px;
-  background: #a8cdd2;
-  margin-bottom: 14px;
+  height: 1px;
+  background: var(--border);
+  margin: 4px 0 18px;
 }
 
-/* Info section */
 .info {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 22px;
 }
 
-.info .feeRange {
-  font-size: 14px;
-  color: #2a7a82;
-  font-weight: 500;
+.feeRange {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 4px;
 }
 
-.info .availability {
+.availability {
   font-size: 13px;
-  color: #3a8f96;
-  margin-bottom: 6px;
+  color: var(--muted);
+  margin: 0 0 14px;
 }
 
-.info .infoRow {
-  width: 100%;
+.infoRow {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  font-size: 12.5px;
-  color: #2a7a82;
+  font-size: 13.5px;
+  color: var(--text);
+  padding: 8px 0;
+  border-top: 1px solid var(--border);
 }
 
-.info .infoRow i {
-  font-size: 16px;
-  color: #3abfc4;
-  flex-shrink: 0;
+.infoRow:first-of-type {
+  border-top: none;
 }
 
-/* Book button */
+.infoRow i {
+  color: var(--accent);
+  width: 16px;
+  text-align: center;
+}
+
 .bookBtn {
-  background: #3abfc4;
+  width: 100%;
+  background: var(--accent);
   color: #fff;
   border: none;
   border-radius: 10px;
-  padding: 11px 0;
-  width: 100%;
-  font-size: 14px;
-  font-weight: 500;
+  padding: 13px 24px;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  letter-spacing: 0.2px;
-  transition: background 0.15s;
+  transition: background 0.15s, transform 0.05s;
 }
 
 .bookBtn:hover {
-  background: #2a9ca6;
+  background: var(--accent-dark);
+}
+
+.bookBtn:active {
+  transform: scale(0.98);
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 768px) {
+  .DocSidebar {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .DocSidebar {
+    border-radius: 14px;
+    padding: 20px 16px;
+  }
+
+  .data button {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .data button,
+  .bookBtn {
+    transition: none;
+  }
 }

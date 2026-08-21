@@ -1,0 +1,301 @@
+.wrapper {
+  --chip-padding-y: 7px;
+  --chip-padding-x: 16px;
+  --chip-font: clamp(12px, 1.4vw, 13px);
+
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 1.2vw, 10px);
+  flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+}
+
+.chipContainer {
+  position: relative;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: 1.5px solid var(--main-color);
+  border-radius: 999px;
+  background: var(--white-color);
+  color: var(--main-color);
+  font-size: var(--chip-font);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.chip:hover {
+  background: rgba(57, 162, 171, 0.07);
+}
+
+.chip:focus-within {
+  outline: 2px solid var(--main-color);
+  outline-offset: 2px;
+}
+
+/* Clicking the disease name selects the folder and shows its history */
+.chipLabel {
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  padding: var(--chip-padding-y) 4px var(--chip-padding-y) var(--chip-padding-x);
+  cursor: pointer;
+}
+
+.chipLabel:active {
+  transform: scale(0.98);
+}
+
+/* Kebab button opens the Scan/Update/Delete menu, independent of selection */
+.chipMenuToggle {
+  border: none;
+  background: none;
+  color: inherit;
+  padding: var(--chip-padding-y) var(--chip-padding-x) var(--chip-padding-y) 4px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0.65;
+  transition: opacity 0.15s ease, transform 0.18s ease;
+}
+
+.chipMenuToggle:hover {
+  opacity: 1;
+}
+
+.chevron {
+  display: flex;
+  align-items: center;
+  transition: transform 0.18s ease;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* Folder whose history is currently displayed below the chip row */
+.chipSelected {
+  background: var(--main-color);
+  color: var(--white-color);
+  box-shadow: 0 4px 14px rgba(57, 162, 171, 0.35);
+}
+
+.chipSelected:hover {
+  background: var(--main-color);
+}
+
+.chipActive {
+  background: var(--main-color);
+  color: var(--white-color);
+  box-shadow: 0 4px 14px rgba(57, 162, 171, 0.35);
+}
+
+.chipActive:hover {
+  background: var(--main-color);
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 168px;
+  max-width: min(240px, calc(100vw - 32px));
+  background: var(--white-color);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(20, 40, 40, 0.14);
+  overflow: hidden;
+  z-index: 20;
+  padding: 6px;
+  animation: menuIn 0.14s ease;
+}
+
+@keyframes menuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 8px;
+  background: none;
+  color: var(--text-color);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.menuItem svg {
+  flex-shrink: 0;
+  opacity: 0.75;
+}
+
+.menuItem:hover,
+.menuItem:focus-visible {
+  background: rgba(57, 162, 171, 0.09);
+}
+
+.menuItemDanger {
+  color: var(--red-color);
+}
+
+.menuItemDanger:hover,
+.menuItemDanger:focus-visible {
+  background: rgba(203, 32, 39, 0.08);
+}
+
+.menuDivider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.06);
+  margin: 4px 6px;
+}
+
+.editSelect {
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  outline: none;
+  cursor: pointer;
+  max-width: 40vw;
+  padding: var(--chip-padding-y) var(--chip-padding-x);
+}
+
+.editSelect option {
+  color: var(--text-color);
+  background: var(--white-color);
+  font-weight: 500;
+}
+
+.addChip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: var(--chip-padding-y) 16px;
+  border: 1.5px dashed var(--main-color);
+  border-radius: 999px;
+  background: var(--white-color);
+  color: var(--main-color);
+  font-size: var(--chip-font);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.12s ease;
+}
+
+.addChip:hover {
+  background: rgba(57, 162, 171, 0.07);
+  border-color: var(--secondary-color);
+}
+
+.addChip:active {
+  transform: scale(0.98);
+}
+
+.addChip:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.addInput {
+  padding: var(--chip-padding-y) 14px;
+  border: 1.5px dashed var(--main-color);
+  border-radius: 999px;
+  background: var(--white-color);
+  color: var(--text-color);
+  font-size: var(--chip-font);
+  font-weight: 600;
+  outline: none;
+  min-width: 150px;
+  max-width: 60vw;
+  cursor: pointer;
+}
+
+/* Tablet: tighten spacing slightly */
+@media (max-width: 640px) {
+  .wrapper {
+    gap: 8px;
+  }
+
+  .chipLabel {
+    padding: 6px 4px 6px 12px;
+  }
+
+  .chipMenuToggle {
+    padding: 6px 12px 6px 4px;
+  }
+
+  .addChip {
+    padding: 6px 12px;
+  }
+
+  .menu {
+    min-width: 150px;
+  }
+}
+
+/* Mobile: stack chips full-width, menu anchors to full row width */
+@media (max-width: 420px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .chipContainer {
+    width: 100%;
+  }
+
+  .chip,
+  .addChip {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .chipLabel {
+    flex: 1;
+    text-align: left;
+  }
+
+  .menu {
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .addInput {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .editSelect {
+    max-width: 70vw;
+  }
+}

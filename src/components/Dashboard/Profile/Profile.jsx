@@ -1,5 +1,4 @@
-// src/components/Dashboard/Profile/Profile.jsx
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Profile.module.css";
 import Swal from "sweetalert2";
 import { useProfile } from "../../../context/ProfileContext.jsx";
