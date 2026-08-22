@@ -3,7 +3,7 @@ import styles from "./Navbar.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../../assets/care.com.svg";
 import { TiThMenu } from "react-icons/ti";
-import { FiUser, FiLogOut, FiChevronDown } from "react-icons/fi";
+import { FiUser, FiLogOut, FiChevronDown, FiGrid } from "react-icons/fi";
 import { useAuth } from "../../../context/AuthContext.jsx";
 import Swal from "sweetalert2";
 
@@ -36,7 +36,14 @@ const Navbar = () => {
   }, []);
 
   const isDoctor = user?.role === "doctor";
-  const dashboardPath = isDoctor ? "/doctor-dashboard" : "/user-dashboard";
+  const isAdmin = user?.role === "admin";
+
+  const dashboardPath = isAdmin
+    ? "/admin-dashboard"
+    : isDoctor
+      ? "/doctor-dashboard"
+      : "/user-dashboard";
+
   const profilePath = isDoctor
     ? "/doctor-dashboard/profile"
     : "/user-dashboard/profile";
@@ -113,7 +120,7 @@ const Navbar = () => {
             </NavLink>
           </li>
 
-          {user && (
+          {user && !isAdmin && (
             <li>
               <NavLink
                 to="/chat"
@@ -135,11 +142,13 @@ const Navbar = () => {
 
           {user && (
             <>
-              <li className={styles.mobileOnly}>
-                <NavLink to={profilePath} onClick={() => setMenuOpen(false)}>
-                  Profile
-                </NavLink>
-              </li>
+              {!isAdmin && (
+                <li className={styles.mobileOnly}>
+                  <NavLink to={profilePath} onClick={() => setMenuOpen(false)}>
+                    Profile
+                  </NavLink>
+                </li>
+              )}
               <li className={styles.mobileOnly}>
                 <NavLink to={dashboardPath} onClick={() => setMenuOpen(false)}>
                   Dashboard
@@ -193,16 +202,29 @@ const Navbar = () => {
                   </div>
                 </div>
 
-                <div className={styles.dropdownGroup}>
-                  <NavLink
-                    to={profilePath}
-                    className={styles.dropdownItem}
-                    onClick={() => setDropdownOpen(false)}
-                  >
-                    <FiUser className={styles.dropdownIcon} />
-                    Profile
-                  </NavLink>
-                </div>
+                {isAdmin ? (
+                  <div className={styles.dropdownGroup}>
+                    <NavLink
+                      to={dashboardPath}
+                      className={styles.dropdownItem}
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      <FiGrid className={styles.dropdownIcon} />
+                      Dashboard
+                    </NavLink>
+                  </div>
+                ) : (
+                  <div className={styles.dropdownGroup}>
+                    <NavLink
+                      to={profilePath}
+                      className={styles.dropdownItem}
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      <FiUser className={styles.dropdownIcon} />
+                      Profile
+                    </NavLink>
+                  </div>
+                )}
 
                 <div className={styles.dropdownGroup}>
                   <button

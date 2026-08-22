@@ -6,7 +6,6 @@ const DoctorCard = ({ filteredDoctors }) => {
   return (
     <>
       {filteredDoctors.map((data) => {
-        console.log("Doctor data:", data);
 
         return (
           <NavLink

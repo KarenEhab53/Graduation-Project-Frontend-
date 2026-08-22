@@ -9,9 +9,14 @@ import Auth from "./pages/Auth/Auth.jsx";
 
 import Login from "./components/Auth/Login/Login .jsx";
 import SignUp from "./components/Auth/Sign up/SignUp.jsx";
+import ForgetPassword from "./components/Auth/ForgetPassword/ForgetPassword.jsx";
+import AdminLogin from "./pages/AdminLogin/AdminLogin.jsx";
+import AdminDashboard from "./pages/AdminDashboard/AdminDashboard.jsx";
+import Dashboard from "./components/AdminDashboard/Dashboard/Dashboard.jsx";
+import Doctors from "./components/AdminDashboard/Doctors/Doctors.jsx";
+import Users from "./components/AdminDashboard/Users/Users.jsx";
 
 import AllDoctors from "./pages/All Doctors/AllDoctors.jsx";
-import DoctorProfile from "./pages/Doctor Profile/DoctorProfile.jsx";
 
 import PatientDashboard from "./pages/Patient Dashboard/PatientDashboard.jsx";
 import Profile from "./components/Dashboard/Profile/Profile.jsx";
@@ -71,6 +76,19 @@ function App() {
             <Route path="login" element={<Login />} />
 
             <Route path="sign-up" element={<SignUp />} />
+
+            <Route path="forget-password" element={<ForgetPassword />} />
+          </Route>
+
+          {/* Admin */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+
+          <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+            <Route path="/admin-dashboard" element={<AdminDashboard />}>
+              <Route index element={<Dashboard />} />
+              <Route path="doctors" element={<Doctors />} />
+              <Route path="users" element={<Users />} />
+            </Route>
           </Route>
 
           {/* User and Doctor */}

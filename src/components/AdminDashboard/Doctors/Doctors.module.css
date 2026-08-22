@@ -1,0 +1,176 @@
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 28px 32px;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0 0 20px;
+}
+
+.state {
+  padding: 40px 0;
+  text-align: center;
+  color: var(--gray-color);
+  font-size: 0.95rem;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+
+.table th {
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #9ca3af;
+  padding: 12px 8px;
+  border-bottom: 1px solid #eef0f2;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 16px 8px;
+  border-bottom: 1px solid #eef0f2;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  white-space: nowrap;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.doctorCell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: #eef0f2;
+}
+
+.badgeApproved,
+.badgePending {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.badgeApproved {
+  background: #eafaf1;
+  color: #1a9c5b;
+}
+
+.badgePending {
+  background: #fff6e6;
+  color: #b98900;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.viewBtn {
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #4b5563;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.viewBtn:hover {
+  border-color: var(--main-color);
+  color: var(--main-color);
+}
+
+.approveBtn,
+.revokeBtn {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.approveBtn {
+  background: var(--main-color);
+  color: #fff;
+}
+
+.approveBtn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.revokeBtn {
+  background: #fdecec;
+  color: var(--red-color);
+}
+
+.revokeBtn:hover:not(:disabled) {
+  background: #fbdada;
+}
+
+.approveBtn:disabled,
+.revokeBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.deleteBtn {
+  border: none;
+  background: none;
+  color: var(--red-color);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: 0.2s;
+}
+
+.deleteBtn:hover:not(:disabled) {
+  background: #fdecec;
+}
+
+.deleteBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+@media screen and (max-width: 480px) {
+  .actions {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 640px) {
+  .card {
+    padding: 20px;
+  }
+}

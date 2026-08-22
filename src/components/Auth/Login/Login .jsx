@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import styles from "./Login.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import api from "../../../api/api";
@@ -42,6 +42,17 @@ const Login = () => {
       });
 
       const { user, token } = res.data;
+
+      // امنع حسابات الأدمن من الدخول من هنا، وودّيه لصفحة الأدمن الصح.
+      if (user.role === "admin") {
+        Swal.fire({
+          icon: "info",
+          title: "Wrong login page",
+          text: "Admin accounts must sign in from the admin login page.",
+        });
+        return;
+      }
+
       login(user, token);
 
       Swal.fire({
@@ -50,7 +61,6 @@ const Login = () => {
         timer: 1200,
         showConfirmButton: false,
       });
-
 
       navigate("/");
     } catch (error) {
@@ -90,7 +100,7 @@ const Login = () => {
         {submitting ? "Logging in..." : "Login"}
       </button>
 
-      <NavLink to="/auth/forgot-password">Forget your password?</NavLink>
+      <NavLink to="/auth/forget-password">Forget your password?</NavLink>
       <NavLink to="/auth/sign-up">You Don't have account</NavLink>
     </div>
   );

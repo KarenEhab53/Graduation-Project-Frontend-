@@ -1,0 +1,219 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 1000;
+}
+
+.modal {
+  position: relative;
+  width: 640px;
+  max-width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: #f4f5f7;
+  color: #4b5563;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.closeBtn:hover {
+  background: #e5e7eb;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.profileImg {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #eef0f2;
+  flex-shrink: 0;
+}
+
+.name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.email {
+  font-size: 0.85rem;
+  color: var(--gray-color);
+  margin: 2px 0;
+}
+
+.meta {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin: 0;
+}
+
+.header > .badgeApproved,
+.header > .badgePending {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.badgeApproved,
+.badgePending {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badgeApproved {
+  background: #eafaf1;
+  color: #1a9c5b;
+}
+
+.badgePending {
+  background: #fff6e6;
+  color: #b98900;
+}
+
+.sectionTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0 0 12px;
+}
+
+.docsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.docCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #eef0f2;
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.docCard:hover {
+  border-color: var(--main-color);
+}
+
+.docImg {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  background: #f4f5f7;
+}
+
+.docMissing {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: #c7cbd1;
+  background: #f9fafb;
+}
+
+.docLabel {
+  padding: 8px 10px;
+  font-size: 0.75rem;
+  color: var(--text-color);
+  text-align: center;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #eef0f2;
+  padding-top: 20px;
+}
+
+.approveBtn,
+.revokeBtn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.approveBtn {
+  background: var(--main-color);
+  color: #fff;
+}
+
+.approveBtn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.revokeBtn {
+  background: #fdecec;
+  color: var(--red-color);
+}
+
+.revokeBtn:hover:not(:disabled) {
+  background: #fbdada;
+}
+
+.approveBtn:disabled,
+.revokeBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+@media screen and (max-width: 480px) {
+  .header {
+    flex-wrap: wrap;
+  }
+
+  .header > .badgeApproved,
+  .header > .badgePending {
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 640px) {
+  .docsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal {
+    padding: 24px 20px;
+  }
+}

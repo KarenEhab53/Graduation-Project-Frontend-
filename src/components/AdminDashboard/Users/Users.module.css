@@ -1,0 +1,97 @@
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 28px 32px;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0 0 20px;
+}
+
+.state {
+  padding: 40px 0;
+  text-align: center;
+  color: var(--gray-color);
+  font-size: 0.95rem;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.table th {
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: #9ca3af;
+  padding: 12px 8px;
+  border-bottom: 1px solid #eef0f2;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 16px 8px;
+  border-bottom: 1px solid #eef0f2;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  white-space: nowrap;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.userCell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: #f1f3f5;
+}
+
+.role {
+  text-transform: capitalize;
+  color: var(--gray-color);
+}
+
+.deleteBtn {
+  border: none;
+  background: none;
+  color: var(--red-color);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  display: inline-flex;
+  transition: 0.2s;
+}
+
+.deleteBtn:hover:not(:disabled) {
+  background: #fdecec;
+}
+
+.deleteBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media screen and (max-width: 640px) {
+  .card {
+    padding: 20px;
+  }
+}
