@@ -29,14 +29,13 @@ const sidebarLinks = [
     path: "/user-dashboard/my-appointement",
   },
   {
-<<<<<<< HEAD
-=======
+
     title: "AI Assistant",
     icon: "fa-solid fa-robot",
     path: "/user-dashboard/ai-assistant",
   },
   {
->>>>>>> 8e37a16 (Add RAG service)
+
     title: "Messages",
     icon: "fa-regular fa-message",
     path: "/user-dashboard/messages",
