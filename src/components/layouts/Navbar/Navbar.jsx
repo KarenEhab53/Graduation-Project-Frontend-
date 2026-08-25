@@ -77,10 +77,11 @@ const Navbar = () => {
 
   return (
     <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
-      <div className={styles.logo}>
-        <img src={logo} alt="Logo" />
-      </div>
-
+      <NavLink to="/">
+        <div className={styles.logo}>
+          SWIFT<span>Care</span>
+        </div>
+      </NavLink>
       <div className={styles.menuIcon} onClick={() => setMenuOpen(!menuOpen)}>
         <TiThMenu />
       </div>

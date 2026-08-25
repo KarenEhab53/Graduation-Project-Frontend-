@@ -26,8 +26,7 @@ const AddHistory = ({ folderId, record, onClose, onSaved }) => {
   );
   const [description, setDescription] = useState(record?.description || "");
 
-  // Documents already saved on the record — × stages removal, nothing is
-  // deleted server-side until Save is pressed.
+
   const [keptDocuments, setKeptDocuments] = useState(record?.documents || []);
   const [removedDocuments, setRemovedDocuments] = useState([]);
   const [newFiles, setNewFiles] = useState([]);

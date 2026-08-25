@@ -3,9 +3,9 @@ import axios from "axios";
 const api = axios.create({
   baseURL: "http://localhost:3000/api",
   withCredentials: true,
-  headers: {
-    "Content-Type": "application/json",
-  },
+  // من غير Content-Type ثابت هنا — axios بيحدده لوحده تلقائي:
+  // "application/json" للأوبجكتات العادية، و"multipart/form-data" + الـ boundary
+  // الصح تلقائيًا لما تبعت FormData (زي في AddHistory.jsx).
 });
 
 // Add token to every request
