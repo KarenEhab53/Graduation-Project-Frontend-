@@ -6,6 +6,8 @@ import {
   listDocuments,
   deleteDocument,
   askQuestion,
+  getChatHistory,
+  syncMedicalHistory,
 } from "../../api/ragApi";
 
 const CATEGORIES = [
@@ -56,6 +58,7 @@ function DocumentsTab() {
   const [documents, setDocuments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
+  const [syncing, setSyncing] = useState(false);
   const [category, setCategory] = useState("prescription");
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef(null);
@@ -87,6 +90,27 @@ function DocumentsTab() {
     return () => clearInterval(pollRef.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  async function handleSync() {
+    setSyncing(true);
+    try {
+      const { data } = await syncMedicalHistory();
+      await refresh();
+      Swal.fire({
+        icon: "success",
+        title: "Sync complete",
+        text: `Synced: ${data.syncedCount} | Already up to date: ${data.skippedCount} | Failed: ${data.failedCount}`,
+      });
+    } catch (err) {
+      Swal.fire({
+        icon: "error",
+        title: "Sync failed",
+        text: err.response?.data?.error || "Could not sync your medical history",
+      });
+    } finally {
+      setSyncing(false);
+    }
+  }
 
   async function handleFiles(files) {
     if (!files || files.length === 0) return;
@@ -137,6 +161,15 @@ function DocumentsTab() {
 
   return (
     <div className={styles.panel}>
+      <button
+        className={styles.syncBtn}
+        onClick={handleSync}
+        disabled={syncing}
+        style={{ marginBottom: 16 }}
+      >
+        {syncing ? "Syncing…" : "🔄 Sync My Medical History"}
+      </button>
+
       <select
         className={styles.select}
         value={category}
@@ -206,9 +239,20 @@ function DocumentsTab() {
 
 function ChatTab() {
   const [messages, setMessages] = useState([]);
+  const [loadingHistory, setLoadingHistory] = useState(true);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const bottomRef = useRef(null);
+
+  // نجيب هيستوري الشات المحفوظ في الباك اند أول ما التاب يتفتح
+  useEffect(() => {
+    getChatHistory()
+      .then(({ data }) => setMessages(data.messages || []))
+      .catch(() => {
+        // لو فشل تحميل الهيستوري، نسيب الشات يبدأ فاضي من غير ما نوقف الصفحة
+      })
+      .finally(() => setLoadingHistory(false));
+  }, []);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -246,7 +290,8 @@ function ChatTab() {
   return (
     <div className={styles.panel}>
       <div className={styles.chatMessages}>
-        {messages.length === 0 && (
+        {loadingHistory && <div className={styles.empty}>Loading your conversation…</div>}
+        {!loadingHistory && messages.length === 0 && (
           <div className={styles.empty}>
             Ask a question about your prescriptions, lab results, or scans.
           </div>

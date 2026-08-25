@@ -26,8 +26,12 @@ export const uploadDocument = (file, category) => {
 
 export const listDocuments = () => ragApi.get("/documents");
 
+export const syncMedicalHistory = () => ragApi.post("/documents/sync");
+
 export const deleteDocument = (id) => ragApi.delete(`/documents/${id}`);
 
 export const askQuestion = (question) => ragApi.post("/chat/ask", { question });
+
+export const getChatHistory = () => ragApi.get("/chat/history");
 
 export default ragApi;
