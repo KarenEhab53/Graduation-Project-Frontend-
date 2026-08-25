@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { LayoutGrid, Stethoscope, Users, LogOut, X } from "lucide-react";
+import { LayoutGrid, Stethoscope, Users, MessageSquare, LogOut, X } from "lucide-react";
 import Swal from "sweetalert2";
 import { useAuth } from "../../../context/AuthContext.jsx";
 import styles from "./Sidebar.module.css";
@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { to: "", label: "Dashboard", icon: LayoutGrid, end: true },
   { to: "doctors", label: "Doctor", icon: Stethoscope },
   { to: "users", label: "Users", icon: Users },
+  { to: "chat", label: "Chat", icon: MessageSquare },
 ];
 
 const Sidebar = ({ isOpen, onClose }) => {
